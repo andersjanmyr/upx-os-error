@@ -6,6 +6,8 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v1
+
       - name: Compile
         run: |
           CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o dist/hello-linux
