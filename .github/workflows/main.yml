@@ -19,7 +19,6 @@ jobs:
           upx_args: '-9'
 
       - uses: actions/upload-artifact@v1
-        if: contains(github.ref, 'refs/tags/')
         with:
           name: dist
           path: dist/
