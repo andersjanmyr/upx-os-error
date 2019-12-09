@@ -4,9 +4,7 @@ on: [push]
 jobs:
   name: Build
   runs-on: ubuntu-latest
-  build:
-
-    steps:
+  steps:
     - name: Compile
       run: |
         printf %s 'package main;import "fmt";func main(){fmt.Println("hi")}' > main.go
