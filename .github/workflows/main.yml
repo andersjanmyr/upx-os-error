@@ -10,8 +10,8 @@ jobs:
         run: |
           printf %s 'package main;import "fmt";func main(){fmt.Println("hi")}' > main.go
           CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build main.go -o dist/hello-linux
-          CGO_ENABLED=0 GOOS=darwin GOARCH=amd64 go build -o dist/hello-osx
-          CGO_ENABLED=0 GOOS=windows GOARCH=386 go build $(FLAGS) -o dist/hello.exe
+          CGO_ENABLED=0 GOOS=darwin GOARCH=amd64 go build main.go -o dist/hello-osx
+          CGO_ENABLED=0 GOOS=windows GOARCH=386 go build main.go $(FLAGS) -o dist/hello.exe
 
       - uses: docker://gact/upx:latest
         with:
