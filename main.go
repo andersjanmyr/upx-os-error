@@ -2,16 +2,24 @@ package main
 
 import (
 	"fmt"
+	"os"
 
-	"github.com/aws/aws-sdk-go/aws"
-	"github.com/aws/aws-sdk-go/aws/session"
-	"github.com/aws/aws-sdk-go/service/s3"
+	"github.com/spf13/cobra"
 )
 
+var rootCmd = &cobra.Command{
+	Use:   "hello",
+	Short: "hello ...",
+	RunE: func(cmd *cobra.Command, args []string) error {
+		fmt.Println("hello")
+		return cmd.Usage()
+	},
+}
+
 func main() {
-	sess := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("eu-west-1"),
-	}))
-	sThree := s3.New(sess)
-	fmt.Println(sThree.ListBuckets(&s3.ListBucketsInput{}))
+	rootCmd.SilenceErrors = true
+	if err := rootCmd.Execute(); err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
 }
